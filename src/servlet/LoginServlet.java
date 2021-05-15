@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 				//resp.addCookie(cookie);
 				req.setAttribute("items", balsalevyDAO.getAll());
 				//System.out.println(balsalevyDAO.getAll());
-				resp.sendRedirect("/database");
+				resp.sendRedirect("/niilespuuntiheys2/database");
 			} else {
 				throw new Exception();
 			}

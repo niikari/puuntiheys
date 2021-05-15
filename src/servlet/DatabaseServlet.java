@@ -58,7 +58,7 @@ public class DatabaseServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		resp.sendRedirect("/database");
+		resp.sendRedirect("/niilespuuntiheys2/database");
 
 	}
 	

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class Database {
 	
-	private static final String URL = "jdbc:sqlite:.\\balsa.sqlite";
+	private static final String URL = "jdbc:sqlite:C:\\Users\\pakni\\git\\niilespuuntiheys2\\balsa.sqlite";
 	
 	public Connection connect() {
 		Connection connection = null;
