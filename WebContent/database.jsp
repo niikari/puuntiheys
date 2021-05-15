@@ -99,10 +99,13 @@ table, th, td {
 
 	<script type="text/javascript">
 	async function removeProduct(id) {
-		let response = await fetch(`/database?id=${id}`, { method: "DELETE" });
+		// let response = await fetch(`/niilespuuntiheys2/database?id=${id}`, { method: "DELETE" });
+		let response = await fetch("/niilespuuntiheys2/database?id=" + id , { method: "DELETE"});
+		
+		console.log(response.status);
 
 		if (response.status === 200) {
-			let element = document.getElementById(`balsa-${id}`);
+			let element = document.getElementById("balsa-" + id);
 			element.remove();
 		} else {
 			alert("Jotain meni pieleen...");
