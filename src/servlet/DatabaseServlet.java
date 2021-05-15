@@ -22,8 +22,7 @@ public class DatabaseServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("doget");
-		
+		/*
 		if (req.getCookies().length < 1) {
 			req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 		} else {
@@ -31,8 +30,11 @@ public class DatabaseServlet extends HttpServlet {
 			req.setAttribute("tulos", tulos);
 			tulos = "";
 			req.getRequestDispatcher("/database.jsp").forward(req, resp);
-		}
-		
+		}*/
+		req.setAttribute("tulos", tulos);
+		tulos = "";
+		req.setAttribute("items", balsalevyDAO.getAll());
+		req.getRequestDispatcher("/database.jsp").forward(req, resp);
 	}
 	
 	@Override

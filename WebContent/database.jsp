@@ -27,7 +27,7 @@ table, th, td {
 <body>
 	<h1>Puun tiheyslaskenta</h1>
 
-	<form method="post" action="/database">
+	<form method="post" action="database">
 		<table>
 			<tr>
 				<td></td>

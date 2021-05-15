@@ -52,7 +52,7 @@ table, th, td {
 			<tr>
 				<td></td>
 				<td><input type="submit" class="btn btn-success" name="action"
-					value="Laske"> <a href="/niilespuuntiheys2/login">I am Feeling Lucky</a>
+					value="Laske"> <a href="/niilespuuntiheys2/login" class="btn btn-success">I am Feeling Lucky</a>
 					</td>
 			</tr>
 			<tr>

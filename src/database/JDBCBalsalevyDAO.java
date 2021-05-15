@@ -60,9 +60,17 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		id++;
 		
 		Connection connection = new Database().connect();
-		String sql = "INSERT INTO Balsalevy VALUES (" + id + ", " + balsalevy.getTiheys() + ", " + balsalevy.getPaksuus() + ", " + balsalevy.getLeveys() + ", " + balsalevy.getPaino() + ", " +balsalevy.getPituus() + ", '" + balsalevy.getGrain() + "');";
+		//String sql = "INSERT INTO Balsalevy VALUES (" + id + ", " + balsalevy.getTiheys() + ", " + balsalevy.getPaksuus() + ", " + balsalevy.getLeveys() + ", " + balsalevy.getPaino() + ", " +balsalevy.getPituus() + ", '" + balsalevy.getGrain() + "');";
+		String sql = "INSERT INTO Balsalevy VALUES(?, ?, ?, ?, ?, ?, ?)";
 		//System.out.println(sql);
 		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setLong(1, id);
+			statement.setDouble(2, balsalevy.getTiheys());
+			statement.setDouble(3, balsalevy.getPaksuus());
+			statement.setDouble(4, balsalevy.getLeveys());
+			statement.setDouble(5, balsalevy.getPaino());
+			statement.setDouble(6, balsalevy.getPituus());
+			statement.setString(7, balsalevy.getGrain());
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected > 0) {
 				return true;
@@ -80,8 +88,10 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 	@Override
 	public boolean removeItem(Balsalevy balsalevy) {
 		Connection connection = new Database().connect();
-		String sql = "DELETE FROM Balsalevy WHERE id='" + balsalevy.getId() + "'";
+		//String sql = "DELETE FROM Balsalevy WHERE id='" + balsalevy.getId() + "'";
+		String sql = "DELETE FROM Balsalevy WHERE id = ?";		
 		try (PreparedStatement statement = connection.prepareStatement(sql)) {
+			statement.setLong(1, balsalevy.getId());
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected > 0) {
 				return true;

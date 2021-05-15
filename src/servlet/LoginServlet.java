@@ -15,35 +15,30 @@ import database.JDBCBalsalevyDAO;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	
-	private final static String pin = System.getenv("pin");
+	private final static String pin = "108";
 	
-	/*@Override
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(System.getenv(pin));
-		
+		BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
 		try {
 			String givenPin = req.getParameter("salasana");
 			if (givenPin.equals(pin)) {
-				Cookie cookie = new Cookie("pin", "givenPin");
-				cookie.setPath("/database");
-				resp.addCookie(cookie);
+				//Cookie cookie = new Cookie("pin", "givenPin");
+				//cookie.setPath("/database");
+				//resp.addCookie(cookie);
 				req.setAttribute("items", balsalevyDAO.getAll());
-				req.getRequestDispatcher("/database.jsp").forward(req, resp);
+				//System.out.println(balsalevyDAO.getAll());
+				resp.sendRedirect("/database");
+			} else {
+				throw new Exception();
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+			req.getRequestDispatcher("/login.jsp").forward(req, resp);
 		}
 		
-		req.getRequestDispatcher("/login.jsp").forward(req, resp);
-	}*/
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println(pin);
-		req.getRequestDispatcher("/login.jsp").forward(req, resp);
 	}
 		
 		
