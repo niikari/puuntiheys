@@ -36,27 +36,27 @@ table, th, td {
 			<tr>
 				<td>Paksuus (mm)</td>
 				<td><input type="number" name="paksuus"
-					value="<%out.print(request.getParameter("paksuus"));%>"></td>
+					placeholder=${ alkuPaksuus }></td>
 			</tr>
 			<tr>
 				<td>Pituus (mm)</td>
 				<td><input type="number" name="pituus"
-					value="<%out.print(request.getParameter("pituus"));%>"></td>
+					placeholder=${ alkuPituus } ></td>
 			</tr>
 			<tr>
 				<td>Leveys (mm)</td>
 				<td><input type="number" name="leveys"
-					value="<%out.print(request.getParameter("leveys"));%>"></td>
+					placeholder=${ alkuLeveys } ></td>
 			</tr>
 			<tr>
 				<td>Paino (g)</td>
 				<td><input type="number" name="paino"
-					value="<%out.print(request.getParameter("paino"));%>"></td>
+					placeholder=${ alkuPaino } ></td>
 			</tr>
 			<tr>
 				<td>Grain</td>
 				<td><input type="text" name="grain"
-					value="<%out.print(request.getParameter("grain"));%>"></td>
+					placeholder=${ alkuGrain } ></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -102,7 +102,6 @@ table, th, td {
 		// let response = await fetch(`/niilespuuntiheys2/database?id=${id}`, { method: "DELETE" });
 		let response = await fetch("/niilespuuntiheys2/database?id=" + id , { method: "DELETE"});
 		
-		console.log(response.status);
 
 		if (response.status === 200) {
 			let element = document.getElementById("balsa-" + id);

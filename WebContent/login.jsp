@@ -27,7 +27,7 @@ table, th, td {
 <body>
 	<h1>Tunnistaudu</h1>
 
-	<form method="get">
+	<form method="get" action="login">
 		<table>
 			<tr>
 				<td>Salasana (vinkki: talon neliöt)</td>
@@ -35,7 +35,7 @@ table, th, td {
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" class="btn btn-success" action="kirjaudu"
+				<td><input type="submit" class="btn btn-success" 
 					value="Kirjaudu"></td>
 			</tr>
 		</table>

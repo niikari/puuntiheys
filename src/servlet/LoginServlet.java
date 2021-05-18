@@ -19,15 +19,10 @@ public class LoginServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
+		
 		try {
 			String givenPin = req.getParameter("salasana");
-			if (givenPin.equals(pin)) {
-				//Cookie cookie = new Cookie("pin", "givenPin");
-				//cookie.setPath("/database");
-				//resp.addCookie(cookie);
-				req.setAttribute("items", balsalevyDAO.getAll());
-				//System.out.println(balsalevyDAO.getAll());
+			if (givenPin.equals(pin)) {							
 				resp.sendRedirect("/niilespuuntiheys2/database");
 			} else {
 				throw new Exception();

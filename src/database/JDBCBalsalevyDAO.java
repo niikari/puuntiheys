@@ -26,7 +26,10 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 						Balsalevy balsalevy = new Balsalevy(rs.getInt("id"), rs.getDouble("tiheys"), rs.getDouble("korkeus"), rs.getDouble("leveys"), rs.getDouble("paino"), rs.getDouble("pituus"), rs.getString("grain"));
 						items.add(balsalevy);
 					}
+					rs.close();
 				}
+				statement.close();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -81,6 +84,9 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 				if (statement.executeUpdate() > 0) {
 					return true;
 				}
+				
+				statement.close();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -108,9 +114,14 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 				if (statement.executeUpdate() > 0) {
 					return true;
 				}
+				
+				statement.close();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
+			connection.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

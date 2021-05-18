@@ -17,29 +17,37 @@ import model.Balsalevy;
 @WebServlet("/database")
 public class DatabaseServlet extends HttpServlet {
 	
-	BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
+	
 	String tulos = "";
+	String alkuPaksuus = "";
+	String alkuPituus = "";
+	String alkuLeveys = "";
+	String alkuPaino = "";
+	String alkuGrain = "";
+	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*
-		if (req.getCookies().length < 1) {
-			req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
-		} else {
-			req.setAttribute("items", balsalevyDAO.getAll());
-			req.setAttribute("tulos", tulos);
-			tulos = "";
-			req.getRequestDispatcher("/database.jsp").forward(req, resp);
-		}*/
+		BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
+		req.setAttribute("alkuPaksuus", alkuPaksuus);
+		req.setAttribute("alkuPituus", alkuPituus);
+		req.setAttribute("alkuLeveys", alkuLeveys);
+		req.setAttribute("alkuPaino", alkuPaino);
+		req.setAttribute("alkuGrain", alkuGrain);
 		req.setAttribute("tulos", tulos);
 		tulos = "";
+		String alkuPaksuus = "";
+		String alkuPituus = "";
+		String alkuLeveys = "";
+		String alkuPaino = "";
+		String alkuGrain = "";
 		req.setAttribute("items", balsalevyDAO.getAll());
 		req.getRequestDispatcher("/database.jsp").forward(req, resp);
 	}
 	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
+		BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
 		DecimalFormat des = new DecimalFormat("0.00");
 
 		try {
@@ -50,6 +58,12 @@ public class DatabaseServlet extends HttpServlet {
 			String grain = req.getParameter("grain");
 			double tiheys = Math.floor(paino / (paksuus * pituus * leveys));
 			tulos = des.format(tiheys);
+			alkuPaksuus = req.getParameter("paksuus");
+			alkuPituus = req.getParameter("pituus");
+			alkuLeveys = req.getParameter("leveys");
+			alkuPaino = req.getParameter("paino");
+			alkuGrain = req.getParameter("grain");
+			
 			
 			Balsalevy balsalevy = new Balsalevy(tiheys, paksuus, leveys, paino, pituus, grain);
 			balsalevyDAO.addItem(balsalevy);
@@ -64,6 +78,7 @@ public class DatabaseServlet extends HttpServlet {
 	
 	@Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
 		int id = Integer.valueOf(req.getParameter("id"));
 		Balsalevy toDelete = balsalevyDAO.getItem(id);
 		balsalevyDAO.removeItem(toDelete);
