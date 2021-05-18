@@ -2,22 +2,24 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Database {
 	
-	//private static final String URL = "jdbc:sqlite:C:\\Users\\pakni\\git\\niilespuuntiheys2\\balsa.sqlite";
-	private static final String URL = "jdbc:sqlite:/home/niiles/balsa.sqlite";
+	private static final String URL = "jdbc:sqlite:C:\\Users\\pakni\\git\\niilespuuntiheys2\\balsa.sqlite";
+	//private static final String URL = "jdbc:sqlite:/home/niiles/balsa.sqlite";
+	//private static final String URL = "jdbc:sqlite:.\\balsa.sqlite";
 	
 	
-	public Connection connect() {
-		Connection connection = null;
+	public Connection connect() throws ClassNotFoundException {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			System.out.println(URL);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			return DriverManager.getConnection(URL);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return connection;
+		return null;
+		
+		
 	}
 }
