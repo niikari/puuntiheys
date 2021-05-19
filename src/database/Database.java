@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class Database {
 	
-	//private static final String URL = "jdbc:sqlite:C:\\Users\\pakni\\git\\niilespuuntiheys2\\balsa.sqlite";
-	private static final String URL = "jdbc:sqlite:/home/niiles/balsa.sqlite";
+	private static final String URL = "jdbc:sqlite:C:\\Users\\pakni\\git\\niilespuuntiheys2\\balsa.sqlite";
+	//private static final String URL = "jdbc:sqlite:/home/niiles/balsa.sqlite";
 	//private static final String URL = "jdbc:sqlite:.\\balsa.sqlite";
 	
 	

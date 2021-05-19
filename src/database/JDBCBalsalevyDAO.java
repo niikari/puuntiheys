@@ -18,6 +18,30 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		List<Balsalevy> items = new ArrayList<>();
 		
 		try {
+			
+			Connection connection = db.connect();
+			String sql = "SELECT * FROM Balsalevy";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				Balsalevy balsalevy = new Balsalevy(rs.getInt("id"), rs.getDouble("tiheys"), rs.getDouble("korkeus"), rs.getDouble("leveys"), rs.getDouble("paino"), rs.getDouble("pituus"), rs.getString("grain"));
+				items.add(balsalevy);
+			}
+			
+			rs.close();
+			statement.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*
+				 
+		try {
 			Connection connection = db.connect();
 			String sql = "SELECT * FROM Balsalevy";
 			try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -38,7 +62,7 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}*/		
 		
 		return items;
 		
@@ -71,6 +95,31 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		Database db = new Database();
 		
 		try {
+			
+			Connection connection = db.connect();
+			String sql = "INSERT INTO Balsalevy VALUES(?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setLong(1, id);
+			statement.setDouble(2, balsalevy.getTiheys());
+			statement.setDouble(3, balsalevy.getPaksuus());
+			statement.setDouble(4, balsalevy.getLeveys());
+			statement.setDouble(5, balsalevy.getPaino());
+			statement.setDouble(6, balsalevy.getPituus());
+			statement.setString(7, balsalevy.getGrain());
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+			
+			statement.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		/*
+		try {
 			Connection connection = db.connect();
 			String sql = "INSERT INTO Balsalevy VALUES(?, ?, ?, ?, ?, ?, ?)";
 			try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -96,7 +145,7 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		
 		return false;
 				
@@ -106,6 +155,26 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 	public boolean removeItem(Balsalevy balsalevy) {
 		Database db = new Database();
 		
+		try {
+			
+			Connection connection = db.connect();
+			String sql = "DELETE FROM Balsalevy WHERE id = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setLong(1, balsalevy.getId());
+			if (statement.executeUpdate() > 0) {
+				return true;
+			}
+			
+			statement.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/*
 		try {
 			Connection connection = db.connect();
 			String sql = "DELETE FROM Balsalevy WHERE id = ?";
@@ -126,7 +195,7 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		*/
 		
 		return false;
 	}

@@ -30,7 +30,7 @@ public class IndexServlet extends HttpServlet {
 			Double pituus = Double.parseDouble(req.getParameter("pituus")) / 1000;
 			Double leveys = Double.parseDouble(req.getParameter("leveys")) / 1000;
 			Double paino = Double.parseDouble(req.getParameter("paino")) / 1000;
-			// System.out.println(paino /(paksuus * pituus * leveys)); amerikanTulos =
+			
 			amerikanTulos = des.format(paino * 2.20462262185 / ((paksuus * 3.2808399) * (pituus * 3.2808399) * (leveys * 3.2808399)));
 			tulos = des.format(paino / (paksuus * pituus * leveys));
 
