@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,9 @@ import model.Balsalevy;
 
 public class JDBCBalsalevyDAO implements BalsalevyDAO {
 	
+	//  Testaukseen
+	//private static final String URL = "jdbc:sqlite:C:\\Users\\pakni\\git\\niilespuuntiheys2\\balsa.sqlite";
+	private static final String URL = "jdbc:sqlite:/home/niiles/balsa.sqlite";
 	
 	@Override
 	public List<Balsalevy> getAll() {
@@ -19,7 +23,11 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		
 		try {
 			
-			Connection connection = db.connect();
+			//Connection connection = db.connect();
+			
+			//Testaukseen seuraavat kaksi riviä
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection(URL);
 			String sql = "SELECT * FROM Balsalevy";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
@@ -96,7 +104,11 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		
 		try {
 			
-			Connection connection = db.connect();
+			//Connection connection = db.connect();
+			
+			// Testaukseen seuraavat kaksi riviä
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection(URL);
 			String sql = "INSERT INTO Balsalevy VALUES(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setLong(1, id);
@@ -157,7 +169,11 @@ public class JDBCBalsalevyDAO implements BalsalevyDAO {
 		
 		try {
 			
-			Connection connection = db.connect();
+			//Connection connection = db.connect();
+			
+			// Testaukseen seuraavat kaksi riviä
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection(URL);
 			String sql = "DELETE FROM Balsalevy WHERE id = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setLong(1, balsalevy.getId());

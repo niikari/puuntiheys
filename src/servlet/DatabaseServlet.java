@@ -49,7 +49,7 @@ public class DatabaseServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		BalsalevyDAO balsalevyDAO = new JDBCBalsalevyDAO();
 		DecimalFormat des = new DecimalFormat("0.00");
-
+		
 		try {
 			double paksuus = Double.valueOf(req.getParameter("paksuus")) / 1000;
 			double pituus = Double.valueOf(req.getParameter("pituus")) / 1000;

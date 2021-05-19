@@ -19,22 +19,20 @@ public class LoginServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		try {
-			String givenPin = req.getParameter("salasana");
-			if (givenPin.equals(pin)) {							
-				resp.sendRedirect("/niilespuuntiheys2/database");
-			} else {
-				throw new Exception();
-			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			req.getRequestDispatcher("/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/login.jsp").forward(req, resp);
+	}
+		
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		String givenPin = req.getParameter("salasana");
+		if (givenPin.equals(pin)) {
+			resp.sendRedirect("/niilespuuntiheys2/database");
+		} else {
+			resp.sendRedirect("/niilespuuntiheys2/login");
 		}
 		
 		
 	}
-		
-		
 }
