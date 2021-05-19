@@ -19,7 +19,16 @@ public class Database {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
-	}
+				
+	}/*
+	public Connection connect() {
+		Connection connection = null;
+		try {
+			Class.forName("org.sqlite.JDBC");
+			connection = DriverManager.getConnection(URL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}*/
 }

@@ -36,11 +36,11 @@ public class DatabaseServlet extends HttpServlet {
 		req.setAttribute("alkuGrain", alkuGrain);
 		req.setAttribute("tulos", tulos);
 		tulos = "";
-		String alkuPaksuus = "";
-		String alkuPituus = "";
-		String alkuLeveys = "";
-		String alkuPaino = "";
-		String alkuGrain = "";
+		alkuPaksuus = "";
+		alkuPituus = "";
+		alkuLeveys = "";
+		alkuPaino = "";
+		alkuGrain = "";
 		req.setAttribute("items", balsalevyDAO.getAll());
 		req.getRequestDispatcher("/database.jsp").forward(req, resp);
 	}
